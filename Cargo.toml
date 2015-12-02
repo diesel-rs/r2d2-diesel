@@ -5,4 +5,4 @@ authors = ["Sean Griffin <sean@seantheprogrammer.com>"]
 
 [dependencies]
 r2d2 = "^0.6.1"
-diesel = { path = "/Users/sean/Documents/Projects/open-source/diesel/diesel" }
+diesel = { git = "https://github.com/sgrif/diesel.git" }
