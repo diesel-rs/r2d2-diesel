@@ -1,0 +1,8 @@
+[package]
+name = "r2d2-diesel"
+version = "0.1.0"
+authors = ["Sean Griffin <sean@seantheprogrammer.com>"]
+
+[dependencies]
+r2d2 = "^0.6.1"
+diesel = { path = "/Users/sean/Documents/Projects/open-source/diesel/diesel" }
