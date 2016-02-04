@@ -2,7 +2,7 @@ r2d2-diesel
 ===========
 
 Provides [r2d2](https://github.com/sfackler/r2d2) support to allow connection
-pooling with Diesel.
+pooling with Diesel for PostgreSQL.
 
 Example
 =======
@@ -13,7 +13,7 @@ extern crate r2d2_diesel;
 extern crate diesel;
 
 use std::thread;
-use diesel::*;
+use diesel::prelude::*;
 use r2d2_diesel::ConnectionManager;
 
 fn main() {

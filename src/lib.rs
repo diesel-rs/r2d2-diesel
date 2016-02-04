@@ -2,6 +2,7 @@ extern crate diesel;
 extern crate r2d2;
 
 use diesel::{Connection, ConnectionError};
+use diesel::pg::PgConnection;
 use r2d2::ManageConnection;
 use std::convert::Into;
 
@@ -23,19 +24,19 @@ pub enum Error {
 }
 
 impl ManageConnection for ConnectionManager {
-    type Connection = Connection;
+    type Connection = PgConnection;
     type Error = Error;
 
-    fn connect(&self) -> Result<Connection, Error> {
-        Connection::establish(&self.database_url)
+    fn connect(&self) -> Result<PgConnection, Error> {
+        PgConnection::establish(&self.database_url)
             .map_err(Error::ConnectionError)
     }
 
-    fn is_valid(&self, conn: &mut Connection) -> Result<(), Error> {
+    fn is_valid(&self, conn: &mut PgConnection) -> Result<(), Error> {
         conn.execute("SELECT 1").map(|_| ()).map_err(Error::QueryError)
     }
 
-    fn has_broken(&self, _conn: &mut Connection) -> bool {
+    fn has_broken(&self, _conn: &mut PgConnection) -> bool {
         false
     }
 }

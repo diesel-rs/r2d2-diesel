@@ -9,4 +9,4 @@ repository = "https://github.com/sgrif/r2d2-diesel"
 
 [dependencies]
 r2d2 = "^0.6.1"
-diesel = "^0.4.0"
+diesel = { git = "https://github.com/sgrif/diesel.git" }
