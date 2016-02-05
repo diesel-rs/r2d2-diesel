@@ -1,14 +1,17 @@
+extern crate diesel;
 extern crate r2d2;
 extern crate r2d2_diesel;
 
 use std::sync::Arc;
 use std::sync::mpsc;
 use std::thread;
+
+use diesel::pg::PgConnection;
 use r2d2_diesel::ConnectionManager;
 
 #[test]
 fn basic_connection() {
-    let manager = ConnectionManager::new("postgres://localhost");
+    let manager = ConnectionManager::<PgConnection>::new("postgres://localhost/");
     let config = r2d2::Config::builder().pool_size(2).build();
     let pool = Arc::new(r2d2::Pool::new(config, manager).unwrap());
 
@@ -39,7 +42,7 @@ fn basic_connection() {
 
 #[test]
 fn is_valid() {
-    let manager = ConnectionManager::new("postgres://localhost");
+    let manager = ConnectionManager::<PgConnection>::new("postgres://localhost/");
     let config = r2d2::Config::builder().pool_size(1).test_on_check_out(true).build();
     let pool = r2d2::Pool::new(config, manager).unwrap();
 
