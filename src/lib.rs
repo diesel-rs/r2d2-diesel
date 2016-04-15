@@ -4,6 +4,7 @@ extern crate r2d2;
 use diesel::{Connection, ConnectionError};
 use r2d2::ManageConnection;
 use std::convert::Into;
+use std::fmt;
 use std::marker::PhantomData;
 
 pub struct ConnectionManager<T> {
@@ -23,9 +24,28 @@ impl<T> ConnectionManager<T> {
     }
 }
 
+#[derive(Debug)]
 pub enum Error {
     ConnectionError(ConnectionError),
     QueryError(diesel::result::Error),
+}
+
+impl fmt::Display for Error {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match *self {
+            Error::ConnectionError(ref e) => e.fmt(f),
+            Error::QueryError(ref e) => e.fmt(f),
+        }
+    }
+}
+
+impl ::std::error::Error for Error {
+    fn description(&self) -> &str {
+        match *self {
+            Error::ConnectionError(ref e) => e.description(),
+            Error::QueryError(ref e) => e.description(),
+        }
+    }
 }
 
 impl<T> ManageConnection for ConnectionManager<T> where
