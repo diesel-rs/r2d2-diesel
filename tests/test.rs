@@ -7,10 +7,8 @@ use std::sync::mpsc;
 use std::thread;
 
 use diesel::pg::PgConnection;
-use r2d2_diesel::ConnectionManager;
-
-#[cfg(feature = "sqlite")]
 use diesel::sqlite::SqliteConnection;
+use r2d2_diesel::ConnectionManager;
 
 #[test]
 fn pg_basic_connection() {
@@ -52,7 +50,6 @@ fn pg_is_valid() {
     pool.get().unwrap();
 }
 
-#[cfg(feature = "sqlite")]
 #[test]
 fn sqlite_basic_connection() {
     let manager = ConnectionManager::<SqliteConnection>::new("test.db");
@@ -84,7 +81,6 @@ fn sqlite_basic_connection() {
     pool.get().unwrap();
 }
 
-#[cfg(feature = "sqlite")]
 #[test]
 fn sqlite_is_valid() {
     let manager = ConnectionManager::<SqliteConnection>::new("test.db");
