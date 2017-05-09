@@ -11,8 +11,8 @@ SQLite database running on localhost, then creates a bunch of threads and
 acquires a connection from the pool for each thread.
 
 Executable versions are in [examples/](examples/) which you can run with
-`cargo run --example postgres` or
-`cargo run --example sqlite --features sqlite`.
+`cargo run --example postgres --features "diesel/postgres"` or
+`cargo run --example sqlite --features "diesel/sqlite"`.
 
 
 ```rust
