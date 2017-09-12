@@ -63,7 +63,7 @@ impl<T> ManageConnection for ConnectionManager<T> where
         conn.execute("SELECT 1").map(|_| ()).map_err(Error::QueryError)
     }
 
-    fn has_broken(&self, _conn: &mut T) -> bool {
-        false
+    fn has_broken(&self, conn: &mut T) -> bool {
+        self.is_valid(conn).is_err()
     }
 }
