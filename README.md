@@ -40,3 +40,18 @@ fn main() {
     }
 }
 ```
+
+Using diesel master branch
+============================
+
+If you want to use diesel master's branch with r2d2-diesel you have to add the
+following section in your Cargo.toml file. If you're using a workspace, this
+needs to be in the Cargo.toml at the root of the workspace.
+
+```toml
+[patch.crates-io]
+diesel = { git = "https://github.com/diesel-rs/diesel.git" }
+diesel_infer_schema = { git = "https://github.com/diesel-rs/diesel.git" }
+diesel_codegen = { git = "https://github.com/diesel-rs/diesel.git" }
+```
+
