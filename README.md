@@ -22,7 +22,7 @@ extern crate r2d2_diesel;
 
 use std::thread;
 
-use diesel::pg::PgConnection;
+use diesel::PgConnection;
 use r2d2_diesel::ConnectionManager;
 
 fn main() {

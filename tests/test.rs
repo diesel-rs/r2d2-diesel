@@ -6,8 +6,7 @@ use std::sync::Arc;
 use std::sync::mpsc;
 use std::thread;
 
-use diesel::pg::PgConnection;
-use diesel::sqlite::SqliteConnection;
+use diesel::{PgConnection, SqliteConnection};
 use r2d2_diesel::ConnectionManager;
 
 #[test]
