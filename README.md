@@ -1,3 +1,7 @@
+THIS CRATE HAS BEEN DEPRECATED, USE THE `r2d2` MODULE IN DIESEL INSTEAD
+===
+
+
 r2d2-diesel
 ===========
 
